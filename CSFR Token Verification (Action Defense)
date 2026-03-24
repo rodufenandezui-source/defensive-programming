@@ -1,0 +1,7 @@
+function csrf_verify(): void {
+    $token = $_POST['csrf_token'] ?? $_SERVER['HTTP_X_CSRF_TOKEN'] ?? '';
+    if (!hash_equals($_SESSION['csrf_token'] ?? '', $token)) {
+        http_response_code(403);
+        die('403 Forbidden — Invalid CSRF token.');
+    }
+}
