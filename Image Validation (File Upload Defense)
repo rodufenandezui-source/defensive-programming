@@ -1,0 +1,7 @@
+$finfo = new finfo(FILEINFO_MIME_TYPE);
+$mimeType = $finfo->file($file['tmp_name']);
+$allowedMimes = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
+
+if (!in_array($mimeType, $allowedMimes, true)) {
+    return ['ok' => false, 'error' => 'Only JPG, PNG, GIF, and WEBP images are allowed.'];
+}
